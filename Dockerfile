@@ -25,12 +25,11 @@ RUN poetry config virtualenvs.create false && \
     # Add dynamic-versioning after dependencies install so we don't need to
     # mount the .git directory in this stage.
 
-# Then create a wheel so that the app isn't installed in editable mode, and
-# poetry-dynamic-versioning works as expected.
+# Install the package directly with poetry - the version will be picked up
+# from the install metadata by importlib.
 COPY demo_app/ demo_app/
 RUN --mount=source=.git,target=/demo-app/.git \
-    poetry build --format wheel && \
-    pip install dist/*.whl
+    poetry install --only-root
 
 ENV FLASK_APP=demo_app.app
 
