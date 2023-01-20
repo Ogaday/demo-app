@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "demo-app"
+version = "0.0.1.dev1+f56fddd"
+description = "Single sourced python app"
+authors = ["Ogaday Willers Moore <w.ogaday@gmail.com>"]
+readme = "README.md"
+packages = [{include = "demo_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.2.2"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "pep440"
+bump = true
+tag-branch = "main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
